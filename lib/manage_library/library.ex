@@ -350,4 +350,580 @@ defmodule ManageLibrary.Library do
       {:error, :user, changeset, _} -> {:error, changeset}
     end
   end
+
+  alias ManageLibrary.Library.Book
+
+  @doc """
+  Returns the list of books.
+
+  ## Examples
+
+      iex> list_books()
+      [%Book{}, ...]
+
+  """
+  def list_books do
+    Repo.all(Book)
+  end
+
+  @doc """
+  Gets a single book.
+
+  Raises `Ecto.NoResultsError` if the Book does not exist.
+
+  ## Examples
+
+      iex> get_book!(123)
+      %Book{}
+
+      iex> get_book!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_book!(id), do: Repo.get!(Book, id)
+
+  @doc """
+  Creates a book.
+
+  ## Examples
+
+      iex> create_book(%{field: value})
+      {:ok, %Book{}}
+
+      iex> create_book(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_book(attrs \\ %{}) do
+    %Book{}
+    |> Book.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a book.
+
+  ## Examples
+
+      iex> update_book(book, %{field: new_value})
+      {:ok, %Book{}}
+
+      iex> update_book(book, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_book(%Book{} = book, attrs) do
+    book
+    |> Book.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a book.
+
+  ## Examples
+
+      iex> delete_book(book)
+      {:ok, %Book{}}
+
+      iex> delete_book(book)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_book(%Book{} = book) do
+    Repo.delete(book)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking book changes.
+
+  ## Examples
+
+      iex> change_book(book)
+      %Ecto.Changeset{data: %Book{}}
+
+  """
+  def change_book(%Book{} = book, attrs \\ %{}) do
+    Book.changeset(book, attrs)
+  end
+
+  alias ManageLibrary.Library.Author
+
+  @doc """
+  Returns the list of authors.
+
+  ## Examples
+
+      iex> list_authors()
+      [%Author{}, ...]
+
+  """
+  def list_authors do
+    Repo.all(Author)
+  end
+
+  @doc """
+  Gets a single author.
+
+  Raises `Ecto.NoResultsError` if the Author does not exist.
+
+  ## Examples
+
+      iex> get_author!(123)
+      %Author{}
+
+      iex> get_author!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_author!(id), do: Repo.get!(Author, id)
+
+  @doc """
+  Creates a author.
+
+  ## Examples
+
+      iex> create_author(%{field: value})
+      {:ok, %Author{}}
+
+      iex> create_author(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_author(attrs \\ %{}) do
+    %Author{}
+    |> Author.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a author.
+
+  ## Examples
+
+      iex> update_author(author, %{field: new_value})
+      {:ok, %Author{}}
+
+      iex> update_author(author, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_author(%Author{} = author, attrs) do
+    author
+    |> Author.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a author.
+
+  ## Examples
+
+      iex> delete_author(author)
+      {:ok, %Author{}}
+
+      iex> delete_author(author)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_author(%Author{} = author) do
+    Repo.delete(author)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking author changes.
+
+  ## Examples
+
+      iex> change_author(author)
+      %Ecto.Changeset{data: %Author{}}
+
+  """
+  def change_author(%Author{} = author, attrs \\ %{}) do
+    Author.changeset(author, attrs)
+  end
+
+  alias ManageLibrary.Library.ISBN
+
+  @doc """
+  Returns the list of isbns.
+
+  ## Examples
+
+      iex> list_isbns()
+      [%ISBN{}, ...]
+
+  """
+  def list_isbns do
+    Repo.all(ISBN)
+  end
+
+  @doc """
+  Gets a single isbn.
+
+  Raises `Ecto.NoResultsError` if the Isbn does not exist.
+
+  ## Examples
+
+      iex> get_isbn!(123)
+      %ISBN{}
+
+      iex> get_isbn!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_isbn!(id), do: Repo.get!(ISBN, id)
+
+  @doc """
+  Creates a isbn.
+
+  ## Examples
+
+      iex> create_isbn(%{field: value})
+      {:ok, %ISBN{}}
+
+      iex> create_isbn(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_isbn(attrs \\ %{}) do
+    %ISBN{}
+    |> ISBN.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a isbn.
+
+  ## Examples
+
+      iex> update_isbn(isbn, %{field: new_value})
+      {:ok, %ISBN{}}
+
+      iex> update_isbn(isbn, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_isbn(%ISBN{} = isbn, attrs) do
+    isbn
+    |> ISBN.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a isbn.
+
+  ## Examples
+
+      iex> delete_isbn(isbn)
+      {:ok, %ISBN{}}
+
+      iex> delete_isbn(isbn)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_isbn(%ISBN{} = isbn) do
+    Repo.delete(isbn)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking isbn changes.
+
+  ## Examples
+
+      iex> change_isbn(isbn)
+      %Ecto.Changeset{data: %ISBN{}}
+
+  """
+  def change_isbn(%ISBN{} = isbn, attrs \\ %{}) do
+    ISBN.changeset(isbn, attrs)
+  end
+
+  alias ManageLibrary.Library.Tag
+
+  @doc """
+  Returns the list of tags.
+
+  ## Examples
+
+      iex> list_tags()
+      [%Tag{}, ...]
+
+  """
+  def list_tags do
+    Repo.all(Tag)
+  end
+
+  @doc """
+  Gets a single tag.
+
+  Raises `Ecto.NoResultsError` if the Tag does not exist.
+
+  ## Examples
+
+      iex> get_tag!(123)
+      %Tag{}
+
+      iex> get_tag!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_tag!(id), do: Repo.get!(Tag, id)
+
+  @doc """
+  Creates a tag.
+
+  ## Examples
+
+      iex> create_tag(%{field: value})
+      {:ok, %Tag{}}
+
+      iex> create_tag(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_tag(attrs \\ %{}) do
+    %Tag{}
+    |> Tag.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a tag.
+
+  ## Examples
+
+      iex> update_tag(tag, %{field: new_value})
+      {:ok, %Tag{}}
+
+      iex> update_tag(tag, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_tag(%Tag{} = tag, attrs) do
+    tag
+    |> Tag.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a tag.
+
+  ## Examples
+
+      iex> delete_tag(tag)
+      {:ok, %Tag{}}
+
+      iex> delete_tag(tag)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_tag(%Tag{} = tag) do
+    Repo.delete(tag)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking tag changes.
+
+  ## Examples
+
+      iex> change_tag(tag)
+      %Ecto.Changeset{data: %Tag{}}
+
+  """
+  def change_tag(%Tag{} = tag, attrs \\ %{}) do
+    Tag.changeset(tag, attrs)
+  end
+
+  alias ManageLibrary.Library.BookAuthor
+
+  @doc """
+  Returns the list of book_authors.
+
+  ## Examples
+
+      iex> list_book_authors()
+      [%BookAuthor{}, ...]
+
+  """
+  def list_book_authors do
+    Repo.all(BookAuthor)
+  end
+
+  @doc """
+  Gets a single book_author.
+
+  Raises `Ecto.NoResultsError` if the Book author does not exist.
+
+  ## Examples
+
+      iex> get_book_author!(123)
+      %BookAuthor{}
+
+      iex> get_book_author!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_book_author!(id), do: Repo.get!(BookAuthor, id)
+
+  @doc """
+  Creates a book_author.
+
+  ## Examples
+
+      iex> create_book_author(%{field: value})
+      {:ok, %BookAuthor{}}
+
+      iex> create_book_author(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_book_author(attrs \\ %{}) do
+    %BookAuthor{}
+    |> BookAuthor.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a book_author.
+
+  ## Examples
+
+      iex> update_book_author(book_author, %{field: new_value})
+      {:ok, %BookAuthor{}}
+
+      iex> update_book_author(book_author, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_book_author(%BookAuthor{} = book_author, attrs) do
+    book_author
+    |> BookAuthor.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a book_author.
+
+  ## Examples
+
+      iex> delete_book_author(book_author)
+      {:ok, %BookAuthor{}}
+
+      iex> delete_book_author(book_author)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_book_author(%BookAuthor{} = book_author) do
+    Repo.delete(book_author)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking book_author changes.
+
+  ## Examples
+
+      iex> change_book_author(book_author)
+      %Ecto.Changeset{data: %BookAuthor{}}
+
+  """
+  def change_book_author(%BookAuthor{} = book_author, attrs \\ %{}) do
+    BookAuthor.changeset(book_author, attrs)
+  end
+
+  alias ManageLibrary.Library.BookTag
+
+  @doc """
+  Returns the list of book_tags.
+
+  ## Examples
+
+      iex> list_book_tags()
+      [%BookTag{}, ...]
+
+  """
+  def list_book_tags do
+    Repo.all(BookTag)
+  end
+
+  @doc """
+  Gets a single book_tag.
+
+  Raises `Ecto.NoResultsError` if the Book tag does not exist.
+
+  ## Examples
+
+      iex> get_book_tag!(123)
+      %BookTag{}
+
+      iex> get_book_tag!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_book_tag!(id), do: Repo.get!(BookTag, id)
+
+  @doc """
+  Creates a book_tag.
+
+  ## Examples
+
+      iex> create_book_tag(%{field: value})
+      {:ok, %BookTag{}}
+
+      iex> create_book_tag(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_book_tag(attrs \\ %{}) do
+    %BookTag{}
+    |> BookTag.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a book_tag.
+
+  ## Examples
+
+      iex> update_book_tag(book_tag, %{field: new_value})
+      {:ok, %BookTag{}}
+
+      iex> update_book_tag(book_tag, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_book_tag(%BookTag{} = book_tag, attrs) do
+    book_tag
+    |> BookTag.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a book_tag.
+
+  ## Examples
+
+      iex> delete_book_tag(book_tag)
+      {:ok, %BookTag{}}
+
+      iex> delete_book_tag(book_tag)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_book_tag(%BookTag{} = book_tag) do
+    Repo.delete(book_tag)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking book_tag changes.
+
+  ## Examples
+
+      iex> change_book_tag(book_tag)
+      %Ecto.Changeset{data: %BookTag{}}
+
+  """
+  def change_book_tag(%BookTag{} = book_tag, attrs \\ %{}) do
+    BookTag.changeset(book_tag, attrs)
+  end
 end

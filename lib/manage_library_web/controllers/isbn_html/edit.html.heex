@@ -1,0 +1,8 @@
+<.header>
+  Edit Isbn <%= @isbn.id %>
+  <:subtitle>Use this form to manage isbn records in your database.</:subtitle>
+</.header>
+
+<.isbn_form changeset={@changeset} action={~p"/isbns/#{@isbn}"} />
+
+<.back navigate={~p"/isbns"}>Back to isbns</.back>

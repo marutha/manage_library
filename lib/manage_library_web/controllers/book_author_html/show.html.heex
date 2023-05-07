@@ -1,0 +1,16 @@
+<.header>
+  Book author <%= @book_author.id %>
+  <:subtitle>This is a book_author record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/book_authors/#{@book_author}/edit"}>
+      <.button>Edit book_author</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Book"><%= @book_author.book_id %></:item>
+  <:item title="Author"><%= @book_author.author_id %></:item>
+</.list>
+
+<.back navigate={~p"/book_authors"}>Back to book_authors</.back>

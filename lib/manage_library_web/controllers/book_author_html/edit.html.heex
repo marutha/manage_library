@@ -1,0 +1,8 @@
+<.header>
+  Edit Book author <%= @book_author.id %>
+  <:subtitle>Use this form to manage book_author records in your database.</:subtitle>
+</.header>
+
+<.book_author_form changeset={@changeset} action={~p"/book_authors/#{@book_author}"} />
+
+<.back navigate={~p"/book_authors"}>Back to book_authors</.back>

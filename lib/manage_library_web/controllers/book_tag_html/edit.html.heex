@@ -1,0 +1,8 @@
+<.header>
+  Edit Book tag <%= @book_tag.id %>
+  <:subtitle>Use this form to manage book_tag records in your database.</:subtitle>
+</.header>
+
+<.book_tag_form changeset={@changeset} action={~p"/book_tags/#{@book_tag}"} />
+
+<.back navigate={~p"/book_tags"}>Back to book_tags</.back>

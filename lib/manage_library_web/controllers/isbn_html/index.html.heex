@@ -1,0 +1,23 @@
+<.header>
+  Listing Isbns
+  <:actions>
+    <.link href={~p"/isbns/new"}>
+      <.button>New Isbn</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.table id="isbns" rows={@isbns} row_click={&JS.navigate(~p"/isbns/#{&1}")}>
+  <:col :let={isbn} label="Isbn"><%= isbn.isbn %></:col>
+  <:action :let={isbn}>
+    <div class="sr-only">
+      <.link navigate={~p"/isbns/#{isbn}"}>Show</.link>
+    </div>
+    <.link navigate={~p"/isbns/#{isbn}/edit"}>Edit</.link>
+  </:action>
+  <:action :let={isbn}>
+    <.link href={~p"/isbns/#{isbn}"} method="delete" data-confirm="Are you sure?">
+      Delete
+    </.link>
+  </:action>
+</.table>

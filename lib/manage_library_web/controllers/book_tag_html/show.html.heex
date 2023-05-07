@@ -1,0 +1,16 @@
+<.header>
+  Book tag <%= @book_tag.id %>
+  <:subtitle>This is a book_tag record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/book_tags/#{@book_tag}/edit"}>
+      <.button>Edit book_tag</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Book"><%= @book_tag.book_id %></:item>
+  <:item title="Tag"><%= @book_tag.tag_id %></:item>
+</.list>
+
+<.back navigate={~p"/book_tags"}>Back to book_tags</.back>

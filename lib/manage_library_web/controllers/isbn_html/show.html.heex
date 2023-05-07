@@ -1,0 +1,15 @@
+<.header>
+  Isbn <%= @isbn.id %>
+  <:subtitle>This is a isbn record from your database.</:subtitle>
+  <:actions>
+    <.link href={~p"/isbns/#{@isbn}/edit"}>
+      <.button>Edit isbn</.button>
+    </.link>
+  </:actions>
+</.header>
+
+<.list>
+  <:item title="Isbn"><%= @isbn.isbn %></:item>
+</.list>
+
+<.back navigate={~p"/isbns"}>Back to isbns</.back>

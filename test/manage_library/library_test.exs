@@ -505,4 +505,340 @@ defmodule ManageLibrary.LibraryTest do
       refute inspect(%User{password: "123456"}) =~ "password: \"123456\""
     end
   end
+
+  describe "books" do
+    alias ManageLibrary.Library.Book
+
+    import ManageLibrary.LibraryFixtures
+
+    @invalid_attrs %{book_authors_id: nil, description: nil, dop: nil, isbn_id: nil, name: nil}
+
+    test "list_books/0 returns all books" do
+      book = book_fixture()
+      assert Library.list_books() == [book]
+    end
+
+    test "get_book!/1 returns the book with given id" do
+      book = book_fixture()
+      assert Library.get_book!(book.id) == book
+    end
+
+    test "create_book/1 with valid data creates a book" do
+      valid_attrs = %{book_authors_id: 42, description: "some description", dop: ~D[2023-05-06], isbn_id: 42, name: "some name"}
+
+      assert {:ok, %Book{} = book} = Library.create_book(valid_attrs)
+      assert book.book_authors_id == 42
+      assert book.description == "some description"
+      assert book.dop == ~D[2023-05-06]
+      assert book.isbn_id == 42
+      assert book.name == "some name"
+    end
+
+    test "create_book/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Library.create_book(@invalid_attrs)
+    end
+
+    test "update_book/2 with valid data updates the book" do
+      book = book_fixture()
+      update_attrs = %{book_authors_id: 43, description: "some updated description", dop: ~D[2023-05-07], isbn_id: 43, name: "some updated name"}
+
+      assert {:ok, %Book{} = book} = Library.update_book(book, update_attrs)
+      assert book.book_authors_id == 43
+      assert book.description == "some updated description"
+      assert book.dop == ~D[2023-05-07]
+      assert book.isbn_id == 43
+      assert book.name == "some updated name"
+    end
+
+    test "update_book/2 with invalid data returns error changeset" do
+      book = book_fixture()
+      assert {:error, %Ecto.Changeset{}} = Library.update_book(book, @invalid_attrs)
+      assert book == Library.get_book!(book.id)
+    end
+
+    test "delete_book/1 deletes the book" do
+      book = book_fixture()
+      assert {:ok, %Book{}} = Library.delete_book(book)
+      assert_raise Ecto.NoResultsError, fn -> Library.get_book!(book.id) end
+    end
+
+    test "change_book/1 returns a book changeset" do
+      book = book_fixture()
+      assert %Ecto.Changeset{} = Library.change_book(book)
+    end
+  end
+
+  describe "authors" do
+    alias ManageLibrary.Library.Author
+
+    import ManageLibrary.LibraryFixtures
+
+    @invalid_attrs %{name: nil}
+
+    test "list_authors/0 returns all authors" do
+      author = author_fixture()
+      assert Library.list_authors() == [author]
+    end
+
+    test "get_author!/1 returns the author with given id" do
+      author = author_fixture()
+      assert Library.get_author!(author.id) == author
+    end
+
+    test "create_author/1 with valid data creates a author" do
+      valid_attrs = %{name: "some name"}
+
+      assert {:ok, %Author{} = author} = Library.create_author(valid_attrs)
+      assert author.name == "some name"
+    end
+
+    test "create_author/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Library.create_author(@invalid_attrs)
+    end
+
+    test "update_author/2 with valid data updates the author" do
+      author = author_fixture()
+      update_attrs = %{name: "some updated name"}
+
+      assert {:ok, %Author{} = author} = Library.update_author(author, update_attrs)
+      assert author.name == "some updated name"
+    end
+
+    test "update_author/2 with invalid data returns error changeset" do
+      author = author_fixture()
+      assert {:error, %Ecto.Changeset{}} = Library.update_author(author, @invalid_attrs)
+      assert author == Library.get_author!(author.id)
+    end
+
+    test "delete_author/1 deletes the author" do
+      author = author_fixture()
+      assert {:ok, %Author{}} = Library.delete_author(author)
+      assert_raise Ecto.NoResultsError, fn -> Library.get_author!(author.id) end
+    end
+
+    test "change_author/1 returns a author changeset" do
+      author = author_fixture()
+      assert %Ecto.Changeset{} = Library.change_author(author)
+    end
+  end
+
+  describe "isbns" do
+    alias ManageLibrary.Library.ISBN
+
+    import ManageLibrary.LibraryFixtures
+
+    @invalid_attrs %{isbn: nil}
+
+    test "list_isbns/0 returns all isbns" do
+      isbn = isbn_fixture()
+      assert Library.list_isbns() == [isbn]
+    end
+
+    test "get_isbn!/1 returns the isbn with given id" do
+      isbn = isbn_fixture()
+      assert Library.get_isbn!(isbn.id) == isbn
+    end
+
+    test "create_isbn/1 with valid data creates a isbn" do
+      valid_attrs = %{isbn: "some isbn"}
+
+      assert {:ok, %ISBN{} = isbn} = Library.create_isbn(valid_attrs)
+      assert isbn.isbn == "some isbn"
+    end
+
+    test "create_isbn/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Library.create_isbn(@invalid_attrs)
+    end
+
+    test "update_isbn/2 with valid data updates the isbn" do
+      isbn = isbn_fixture()
+      update_attrs = %{isbn: "some updated isbn"}
+
+      assert {:ok, %ISBN{} = isbn} = Library.update_isbn(isbn, update_attrs)
+      assert isbn.isbn == "some updated isbn"
+    end
+
+    test "update_isbn/2 with invalid data returns error changeset" do
+      isbn = isbn_fixture()
+      assert {:error, %Ecto.Changeset{}} = Library.update_isbn(isbn, @invalid_attrs)
+      assert isbn == Library.get_isbn!(isbn.id)
+    end
+
+    test "delete_isbn/1 deletes the isbn" do
+      isbn = isbn_fixture()
+      assert {:ok, %ISBN{}} = Library.delete_isbn(isbn)
+      assert_raise Ecto.NoResultsError, fn -> Library.get_isbn!(isbn.id) end
+    end
+
+    test "change_isbn/1 returns a isbn changeset" do
+      isbn = isbn_fixture()
+      assert %Ecto.Changeset{} = Library.change_isbn(isbn)
+    end
+  end
+
+  describe "tags" do
+    alias ManageLibrary.Library.Tag
+
+    import ManageLibrary.LibraryFixtures
+
+    @invalid_attrs %{title: nil}
+
+    test "list_tags/0 returns all tags" do
+      tag = tag_fixture()
+      assert Library.list_tags() == [tag]
+    end
+
+    test "get_tag!/1 returns the tag with given id" do
+      tag = tag_fixture()
+      assert Library.get_tag!(tag.id) == tag
+    end
+
+    test "create_tag/1 with valid data creates a tag" do
+      valid_attrs = %{title: "some title"}
+
+      assert {:ok, %Tag{} = tag} = Library.create_tag(valid_attrs)
+      assert tag.title == "some title"
+    end
+
+    test "create_tag/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Library.create_tag(@invalid_attrs)
+    end
+
+    test "update_tag/2 with valid data updates the tag" do
+      tag = tag_fixture()
+      update_attrs = %{title: "some updated title"}
+
+      assert {:ok, %Tag{} = tag} = Library.update_tag(tag, update_attrs)
+      assert tag.title == "some updated title"
+    end
+
+    test "update_tag/2 with invalid data returns error changeset" do
+      tag = tag_fixture()
+      assert {:error, %Ecto.Changeset{}} = Library.update_tag(tag, @invalid_attrs)
+      assert tag == Library.get_tag!(tag.id)
+    end
+
+    test "delete_tag/1 deletes the tag" do
+      tag = tag_fixture()
+      assert {:ok, %Tag{}} = Library.delete_tag(tag)
+      assert_raise Ecto.NoResultsError, fn -> Library.get_tag!(tag.id) end
+    end
+
+    test "change_tag/1 returns a tag changeset" do
+      tag = tag_fixture()
+      assert %Ecto.Changeset{} = Library.change_tag(tag)
+    end
+  end
+
+  describe "book_authors" do
+    alias ManageLibrary.Library.BookAuthor
+
+    import ManageLibrary.LibraryFixtures
+
+    @invalid_attrs %{author_id: nil, book_id: nil}
+
+    test "list_book_authors/0 returns all book_authors" do
+      book_author = book_author_fixture()
+      assert Library.list_book_authors() == [book_author]
+    end
+
+    test "get_book_author!/1 returns the book_author with given id" do
+      book_author = book_author_fixture()
+      assert Library.get_book_author!(book_author.id) == book_author
+    end
+
+    test "create_book_author/1 with valid data creates a book_author" do
+      valid_attrs = %{author_id: 42, book_id: 42}
+
+      assert {:ok, %BookAuthor{} = book_author} = Library.create_book_author(valid_attrs)
+      assert book_author.author_id == 42
+      assert book_author.book_id == 42
+    end
+
+    test "create_book_author/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Library.create_book_author(@invalid_attrs)
+    end
+
+    test "update_book_author/2 with valid data updates the book_author" do
+      book_author = book_author_fixture()
+      update_attrs = %{author_id: 43, book_id: 43}
+
+      assert {:ok, %BookAuthor{} = book_author} = Library.update_book_author(book_author, update_attrs)
+      assert book_author.author_id == 43
+      assert book_author.book_id == 43
+    end
+
+    test "update_book_author/2 with invalid data returns error changeset" do
+      book_author = book_author_fixture()
+      assert {:error, %Ecto.Changeset{}} = Library.update_book_author(book_author, @invalid_attrs)
+      assert book_author == Library.get_book_author!(book_author.id)
+    end
+
+    test "delete_book_author/1 deletes the book_author" do
+      book_author = book_author_fixture()
+      assert {:ok, %BookAuthor{}} = Library.delete_book_author(book_author)
+      assert_raise Ecto.NoResultsError, fn -> Library.get_book_author!(book_author.id) end
+    end
+
+    test "change_book_author/1 returns a book_author changeset" do
+      book_author = book_author_fixture()
+      assert %Ecto.Changeset{} = Library.change_book_author(book_author)
+    end
+  end
+
+  describe "book_tags" do
+    alias ManageLibrary.Library.BookTag
+
+    import ManageLibrary.LibraryFixtures
+
+    @invalid_attrs %{book_id: nil, tag_id: nil}
+
+    test "list_book_tags/0 returns all book_tags" do
+      book_tag = book_tag_fixture()
+      assert Library.list_book_tags() == [book_tag]
+    end
+
+    test "get_book_tag!/1 returns the book_tag with given id" do
+      book_tag = book_tag_fixture()
+      assert Library.get_book_tag!(book_tag.id) == book_tag
+    end
+
+    test "create_book_tag/1 with valid data creates a book_tag" do
+      valid_attrs = %{book_id: 42, tag_id: 42}
+
+      assert {:ok, %BookTag{} = book_tag} = Library.create_book_tag(valid_attrs)
+      assert book_tag.book_id == 42
+      assert book_tag.tag_id == 42
+    end
+
+    test "create_book_tag/1 with invalid data returns error changeset" do
+      assert {:error, %Ecto.Changeset{}} = Library.create_book_tag(@invalid_attrs)
+    end
+
+    test "update_book_tag/2 with valid data updates the book_tag" do
+      book_tag = book_tag_fixture()
+      update_attrs = %{book_id: 43, tag_id: 43}
+
+      assert {:ok, %BookTag{} = book_tag} = Library.update_book_tag(book_tag, update_attrs)
+      assert book_tag.book_id == 43
+      assert book_tag.tag_id == 43
+    end
+
+    test "update_book_tag/2 with invalid data returns error changeset" do
+      book_tag = book_tag_fixture()
+      assert {:error, %Ecto.Changeset{}} = Library.update_book_tag(book_tag, @invalid_attrs)
+      assert book_tag == Library.get_book_tag!(book_tag.id)
+    end
+
+    test "delete_book_tag/1 deletes the book_tag" do
+      book_tag = book_tag_fixture()
+      assert {:ok, %BookTag{}} = Library.delete_book_tag(book_tag)
+      assert_raise Ecto.NoResultsError, fn -> Library.get_book_tag!(book_tag.id) end
+    end
+
+    test "change_book_tag/1 returns a book_tag changeset" do
+      book_tag = book_tag_fixture()
+      assert %Ecto.Changeset{} = Library.change_book_tag(book_tag)
+    end
+  end
 end

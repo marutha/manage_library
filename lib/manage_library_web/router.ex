@@ -24,6 +24,13 @@ defmodule ManageLibraryWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+
+    resources "/books", BookController
+    resources "/authors", AuthorController
+    resources "/isbns", ISBNController
+    resources "/tags", TagController
+    resources "/book_authors", BookAuthorController
+    resources "/book_tags", BookTagController
   end
 
   # Other scopes may use custom stacks.
