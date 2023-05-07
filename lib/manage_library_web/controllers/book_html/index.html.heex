@@ -9,7 +9,6 @@
 
 <.table id="books" rows={@books} row_click={&JS.navigate(~p"/books/#{&1}")}>
   <:col :let={book} label="Name"><%= book.name %></:col>
-  <:col :let={book} label="Book authors"><%= book.book_authors_id %></:col>
   <:col :let={book} label="Isbn"><%= book.isbn_id %></:col>
   <:col :let={book} label="Description"><%= book.description %></:col>
   <:col :let={book} label="Dop"><%= book.dop %></:col>

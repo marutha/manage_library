@@ -36,7 +36,6 @@ defmodule ManageLibrary.LibraryFixtures do
     {:ok, book} =
       attrs
       |> Enum.into(%{
-        book_authors_id: 42,
         description: "some description",
         dop: ~D[2023-05-06],
         isbn_id: 42,
