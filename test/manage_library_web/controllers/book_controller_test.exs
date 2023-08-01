@@ -3,9 +3,9 @@ defmodule ManageLibraryWeb.BookControllerTest do
 
   import ManageLibrary.LibraryFixtures
 
-  @create_attrs %{description: "some description", dop: ~D[2023-05-06], isbn_id: 42, name: "some name"}
-  @update_attrs %{description: "some updated description", dop: ~D[2023-05-07], isbn_id: 43, name: "some updated name"}
-  @invalid_attrs %{description: nil, dop: nil, isbn_id: nil, name: nil}
+  @create_attrs %{description: "some description", dop: ~D[2023-05-06], isbn: 42, name: "some name"}
+  @update_attrs %{description: "some updated description", dop: ~D[2023-05-07], isbn: 43, name: "some updated name"}
+  @invalid_attrs %{description: nil, dop: nil, isbn: nil, name: nil}
 
   describe "index" do
     test "lists all books", %{conn: conn} do

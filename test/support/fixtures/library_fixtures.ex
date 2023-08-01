@@ -38,7 +38,7 @@ defmodule ManageLibrary.LibraryFixtures do
       |> Enum.into(%{
         description: "some description",
         dop: ~D[2023-05-06],
-        isbn_id: 42,
+        isbn: 42,
         name: "some name"
       })
       |> ManageLibrary.Library.create_book()

@@ -4,7 +4,7 @@ defmodule ManageLibrary.Repo.Migrations.CreateBooks do
   def change do
     create table(:books) do
       add :name, :string
-      add :isbn_id, :integer
+      add :isbn, :integer
       add :description, :text
       add :dop, :date
 

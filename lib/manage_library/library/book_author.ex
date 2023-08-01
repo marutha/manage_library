@@ -2,9 +2,11 @@ defmodule ManageLibrary.Library.BookAuthor do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias ManageLibrary.Library.{Book, Author}
+
   schema "book_authors" do
-    field :author_id, :integer
-    field :book_id, :integer
+    belongs_to(:book, Book)
+    belongs_to(:author, Author)
 
     timestamps()
   end

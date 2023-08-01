@@ -2,10 +2,10 @@ defmodule ManageLibrary.Library.BookTag do
   use Ecto.Schema
   import Ecto.Changeset
 
+  alias ManageLibrary.Library.{Book, Tag}
   schema "book_tags" do
-    field :book_id, :integer
-    field :tag_id, :integer
-
+    belongs_to :book, Book
+    belongs_to :tag, Tag
     timestamps()
   end
 

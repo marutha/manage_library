@@ -511,7 +511,7 @@ defmodule ManageLibrary.LibraryTest do
 
     import ManageLibrary.LibraryFixtures
 
-    @invalid_attrs %{nil, description: nil, dop: nil, isbn_id: nil, name: nil}
+    @invalid_attrs %{nil, description: nil, dop: nil, isbn: nil, name: nil}
 
     test "list_books/0 returns all books" do
       book = book_fixture()
@@ -524,12 +524,12 @@ defmodule ManageLibrary.LibraryTest do
     end
 
     test "create_book/1 with valid data creates a book" do
-      valid_attrs = %{description: "some description", dop: ~D[2023-05-06], isbn_id: 42, name: "some name"}
+      valid_attrs = %{description: "some description", dop: ~D[2023-05-06], isbn: 42, name: "some name"}
 
       assert {:ok, %Book{} = book} = Library.create_book(valid_attrs)
       assert book.description == "some description"
       assert book.dop == ~D[2023-05-06]
-      assert book.isbn_id == 42
+      assert book.isbn == 42
       assert book.name == "some name"
     end
 
@@ -539,12 +539,12 @@ defmodule ManageLibrary.LibraryTest do
 
     test "update_book/2 with valid data updates the book" do
       book = book_fixture()
-      update_attrs = %{description: "some updated description", dop: ~D[2023-05-07], isbn_id: 43, name: "some updated name"}
+      update_attrs = %{description: "some updated description", dop: ~D[2023-05-07], isbn: 43, name: "some updated name"}
 
       assert {:ok, %Book{} = book} = Library.update_book(book, update_attrs)
       assert book.description == "some updated description"
       assert book.dop == ~D[2023-05-07]
-      assert book.isbn_id == 43
+      assert book.isbn == 43
       assert book.name == "some updated name"
     end
 
